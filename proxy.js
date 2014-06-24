@@ -30,7 +30,10 @@ function toCacheKey(req) {
 
 
 
-module.exports = function(triggerFns, cacheDir) {
+module.exports = function(triggerFns, cacheDir, internetProxy) {
+    if (internetProxy) {
+        request = request.defaults({proxy: internetProxy});    
+    }    
 
     function toCachePath(req) {
         return path.join(cacheDir, toCacheKey(req));

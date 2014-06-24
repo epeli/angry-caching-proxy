@@ -12,7 +12,8 @@ var config = {
         "npm",
         "pypi",
         "rubygems"
-    ]
+    ],
+    proxy: null
 };
 
 try {
@@ -33,6 +34,9 @@ var args = optimist
 
     .describe("workers", "How many node.js processes to use as workes. Defaults to machine cpu core count.")
     .alias("w", "workers")
+
+    .describe("proxy", "Set proxy server for internet access")
+    .alias("px", "proxy")
 
     .alias("h", "help")
     .argv;

@@ -21,7 +21,7 @@ var app = express();
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
-app.use(require("./proxy")(config.triggerFns, config.directory));
+app.use(require("./proxy")(config.triggerFns, config.directory, config.proxy));
 
 app.get("/", function(req, res, next) {
 

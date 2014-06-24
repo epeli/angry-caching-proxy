@@ -53,6 +53,7 @@ Create `/etc/angry-caching-proxy/config.json` with any of the following keys:
     - default: /etc/angry-caching-proxy/triggers.js
   - `triggers`: Array of triggers to activate.
     - default `["apt-get", "npm", "pypi", "rubygems"]`
+  -  proxy: proxy address for internet access (optional)
 
 
 ## Custom triggers
