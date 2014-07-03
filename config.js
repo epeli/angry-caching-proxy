@@ -16,12 +16,8 @@ var config = {
     proxy: null
 };
 
-try {
-    config = xtend(config, require("/etc/angry-caching-proxy/config.json"));
-} catch(err) { }
-
 var args = optimist
-    .usage("Start Argry Caching Proxy.\n\nUsage: $0")
+    .usage("Start Angry Caching Proxy.\n\nUsage: $0")
 
     .describe("port", "Port to listen")
     .alias("p", "port")
@@ -38,6 +34,9 @@ var args = optimist
     .describe("proxy", "Set proxy server for internet access")
     .alias("px", "proxy")
 
+    .describe("config", "Set path to config file. Other command line parameters override settings from this config file.")
+    .alias("c", "config")
+
     .alias("h", "help")
     .argv;
 
@@ -46,7 +45,15 @@ if (args.help) {
     process.exit(0);
 }
 
+try {
+    config = xtend(config, require(args.config || "/etc/angry-caching-proxy/config.json"));
+} catch(err) {
+    if (args.config) { console.error("could not read config file", err);}
+}
+
+
 if (args.triggers) args.triggers = [].concat(args.triggers);
+
 config = xtend(config, args);
 
 var triggersObject = require("./buildin-triggers");

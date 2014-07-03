@@ -43,7 +43,14 @@ and execute it with
 
 ## Configuration
 
-Create `/etc/angry-caching-proxy/config.json` with any of the following keys:
+Configuration can be set using:
+  - a JSON file located at `/etc/angry-caching-proxy/config.json`
+  - a JSON file located at a path defined by command-line parameter `config`
+  - command-line parameters
+
+Command-line parameters will override any configuration set in a config file.
+
+The following configuration keys are available:
 
   - `directory`: Where to store cached requests.
   - `port`: Port to listen.
@@ -53,7 +60,8 @@ Create `/etc/angry-caching-proxy/config.json` with any of the following keys:
     - default: /etc/angry-caching-proxy/triggers.js
   - `triggers`: Array of triggers to activate.
     - default `["apt-get", "npm", "pypi", "rubygems"]`
-  -  proxy: proxy address for internet access (optional)
+  - `proxy`: proxy address for internet access (optional)
+  - `config`: path to config file (command-line only)
 
 
 ## Custom triggers
